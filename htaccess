@@ -1,0 +1,5 @@
+# Ensure PHP files are treated as executable scripts
+AddHandler application/x-httpd-php .php
+
+# Optional: Customize PHP settings
+php_value display_errors On
