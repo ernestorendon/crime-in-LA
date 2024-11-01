@@ -1,24 +1,37 @@
 <!DOCTYPE html>
-
-<link rel="stylesheet" href="css/style.css">
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greetings from CISE!</title>
+    <title>Crime in LA</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-    <h1>Hello World!
-	This will be the beginning of a beautiful project...
-    </h1>
 
-    <h2>
-        <button onclick="window.location.href='hello_world.php'">Go to Hello World</button>
+<div class="intro-container">
+    <header class="title">
+        <h1>Crime in LA</h1>
+    </header>
 
-    </h2>
+    <!-- New container for buttons -->
+    <div class="buttons-container">
+        <a href="pages/main.html" class="button">Enter</a>
+        <a href="pages/about.html" class="button">About</a>
+    </div>
+
+    <!-- Footer placeholder -->
+    <div id="footer-placeholder"></div>
+</div>
+
+<script>
+    // JavaScript to load footer content
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading footer:', error));
+</script>
 
 </body>
-
 </html>

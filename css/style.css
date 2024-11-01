@@ -1,33 +1,75 @@
-/* Body styling */
-body {
-  background-color: #0D0D49;
-  color: #FFFFFF;
-  font-family: Arial, sans-serif;
+/* General Reset */
+* {
   margin: 0;
   padding: 0;
-  position: relative;
-  overflow: hidden;
+  box-sizing: border-box;
 }
 
-/* Background logo styling */
-.background-logo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+body, html {
   height: 100%;
-  background: url("../img/seal.png") no-repeat center;
-  /* background: rgba(13, 13, 73, 0.8) url("../img/seal.png") no-repeat center; */
-  /* background-size: 50%;  */
-  z-index: -1;
+  font-family: Arial, sans-serif;
+  background-color: #0D0D49;
+  color: white;
 }
 
-/* Additional styling for other elements (optional) */
-h1, p {
-  margin: 20px;
+/* Container for Intro Screen */
+.intro-container {
+  display: grid;
+  grid-template-rows: 1fr auto auto; /* Title, Buttons, Footer */
+  height: 100vh;
+  text-align: center;
+  row-gap: 2rem; /* Adds spacing between rows */
 }
-button {
-  margin: 20px;
+
+/* Title Styling */
+.title h1 {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+}
+
+/* Centered Buttons Container */
+.buttons-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center; /* Center the buttons horizontally */
+}
+
+/* Button Styling */
+.button {
   padding: 10px 20px;
-  font-siz
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+/* Footer Styling */
+.footer {
+  width: 100vw; /* Forces footer to span full viewport width */
+  padding: 10px;
+  background-color: #222;
+  text-align: center;
+  grid-row: 3; /* Positions footer in the last row */
+}
+
+.footer nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
 }
