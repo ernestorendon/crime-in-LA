@@ -1,0 +1,33 @@
+/* Body styling */
+body {
+  background-color: #0D0D49;
+  color: #FFFFFF;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background logo styling */
+.background-logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/seal.png") no-repeat center;
+  /* background: rgba(13, 13, 73, 0.8) url("../img/seal.png") no-repeat center; */
+  /* background-size: 50%;  */
+  z-index: -1;
+}
+
+/* Additional styling for other elements (optional) */
+h1, p {
+  margin: 20px;
+}
+button {
+  margin: 20px;
+  padding: 10px 20px;
+  font-siz
+}
