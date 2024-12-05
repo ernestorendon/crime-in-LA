@@ -17,29 +17,47 @@ $connection = oci_connect(
 );
 
 // Check if the connection was successful
-if ($connection) {
-    echo "Connection to the Oracle database was successful!";
-} else {
+if (!$connection) {
     $e = oci_error();
-    echo "Connection failed: " . htmlentities($e['message']);
+    die("Connection failed: " . htmlentities($e['message']));
 }
 
-// Define a query (replace 'your_table' with your table name)
-$query = "SELECT NAME, CODE, CAPITAL FROM COUNTRY";
+// Example query
+$query = "
+SELECT 
+    c.RecordNumber, 
+    TO_CHAR(c.DateOccurred, 'YYYY-MM-DD HH24:MI:SS') AS DateOccurred, 
+    c.CrimeCodeDescription, 
+    l.AreaName, 
+    l.Street
+FROM Crime c
+JOIN Location l ON c.LocationID = l.LocationID
+WHERE l.AreaName = 'Central'
+AND ROWNUM <= 100
+";
 $statement = oci_parse($connection, $query);
 oci_execute($statement);
 
-// Display data in an HTML table
+// Fetch and display data dynamically
 echo "<table border='1'>";
-echo "<tr><th>NAME</th><th>CODE</th><th>CAPITAL</th></tr>"; // Replace headers with actual column names
 
+// Dynamically fetch column names for the header row
+echo "<tr>";
+$num_columns = oci_num_fields($statement); // Get number of columns
+for ($i = 1; $i <= $num_columns; $i++) {
+    echo "<th>" . htmlentities(oci_field_name($statement, $i), ENT_QUOTES) . "</th>";
+}
+echo "</tr>";
+
+// Dynamically display rows
 while ($row = oci_fetch_array($statement, OCI_ASSOC+OCI_RETURN_NULLS)) {
     echo "<tr>";
-    echo "<td>" . htmlentities($row['NAME'], ENT_QUOTES) . "</td>"; // Replace COLUMN1 with actual column name
-    echo "<td>" . htmlentities($row['CODE'], ENT_QUOTES) . "</td>"; // Replace COLUMN2 with actual column name
-    echo "<td>" . htmlentities($row['CAPITAL'], ENT_QUOTES) . "</td>"; // Replace COLUMN2 with actual column name
+    foreach ($row as $cell) {
+        echo "<td>" . htmlentities($cell, ENT_QUOTES) . "</td>";
+    }
     echo "</tr>";
 }
+
 echo "</table>";
 
 // Free resources and close connection
