@@ -22,7 +22,7 @@ if (!$connection) {
     exit;
 }
 
-// Query data for the specified area
+// Simple query that returns total count of crimes over time in a given area
 $query = "
     SELECT 
         TO_CHAR(c.DateOccurred, 'YYYY-MM') AS Month, 

@@ -27,6 +27,10 @@ body, html {
   margin-bottom: 2rem;
 }
 
+h2 {
+  margin-bottom: 1rem;
+}
+
 /* Centered Buttons Container */
 .buttons-container {
   display: flex;
@@ -49,6 +53,73 @@ body, html {
 .button:hover {
   background-color: #555;
 }
+
+/* Left Column */
+.button-column {
+  background-color: #222;
+  color: white;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Collapsible Section */
+.collapsible {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.collapsible.expanded {
+  max-height: 500px; /* Adjust based on the content */
+  overflow-y: auto; /* Enable scrolling for overflow */
+  scrollbar-width: none; /* Firefox: Hide scrollbar */
+  -ms-overflow-style: none; /* IE and Edge: Hide scrollbar */
+}
+
+/* WebKit Browsers (Chrome, Safari, Edge) */
+.collapsible.expanded::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+/* Buttons Inside the Collapsible Section */
+.button-column button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.button-column button:hover {
+  background-color: #555;
+}
+
+/* Header Styling */
+.button-column h3 {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* Header Styling */
+.button-column h3 {
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #333; /* Default background */
+  color: white;
+  border-radius: 5px; /* Rounded rectangle */
+  transition: background-color 0.3s ease; /* Smooth color change */
+}
+
+.button-column h3:hover {
+  background-color: #555; /* Change background on hover */
+}
+
 
 /* Footer Styling */
 .footer {
