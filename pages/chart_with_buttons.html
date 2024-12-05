@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Trends</title>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Page Layout */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 3fr; /* Left: 1 part, Right: 3 parts */
+            height: 100vh;
+        }
+
+        /* Left Column - Buttons */
+        .button-column {
+            background-color: #222;
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .button-column button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .button-column button:hover {
+            background-color: #555;
+        }
+
+        /* Right Column - Chart */
+        .chart-container {
+            padding: 20px;
+            background-color: #0D0D49;
+            color: white;
+        }
+
+        #crime-trend-chart {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column: Buttons -->
+        <div class="button-column">
+            <h3>Areas</h3>
+            <button onclick="loadChart('Central')">Central</button>
+            <!-- <button onclick="loadChart('West LA')">West LA</button>
+            <button onclick="loadChart('South LA')">South LA</button> -->
+            <!-- Add more buttons as needed -->
+        </div>
+
+        <!-- Right Column: Chart -->
+        <div class="chart-container">
+            <h3>Crime Trends</h3>
+            <div id="crime-trend-chart"></div>
+        </div>
+    </div>
+
+    <script>
+        // Function to Load Chart Data for Selected Area
+        function loadChart(area) {
+            fetch(`fetch_data.php?area=${encodeURIComponent(area)}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Extract months and counts from the data
+                    const months = data.map(item => item.month);
+                    const counts = data.map(item => item.count);
+
+                    // ZingChart configuration
+                    const chartConfig = {
+                        type: 'line',
+                        backgroundColor: 'transparent',
+                        title: {
+                            text: `Crime Trends in ${area}`
+                        },
+                        scaleX: {
+                            label: { text: 'Month' },
+                            labels: months
+                        },
+                        scaleY: {
+                            label: { text: 'Number of Crimes' }
+                        },
+                        series: [
+                            {
+                                values: counts
+                            }
+                        ]
+                    };
+
+                    // Render the chart
+                    zingchart.render({
+                        id: 'crime-trend-chart',
+                        data: chartConfig,
+                        height: '100%',
+                        width: '100%'
+                    });
+                })
+                .catch(error => console.error('Error loading chart data:', error));
+        }
+
+        // Load default area (Central) on page load
+        window.onload = () => loadChart('Central');
+    </script>
+
+    
+
+</body>
+</html>
