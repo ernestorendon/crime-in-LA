@@ -7,6 +7,10 @@
 
 body, html {
   height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  margin: 0; /* Remove default margin to avoid unnecessary scrollbars */
+  padding: 0; /* Remove default padding */
+  width: 100%; /* Ensure content doesn't exceed viewport width */
   font-family: Arial, sans-serif;
   background-color: #0D0D49;
   color: white;
@@ -16,14 +20,15 @@ body, html {
 .intro-container {
   display: grid;
   grid-template-rows: 1fr auto auto; /* Title, Buttons, Footer */
-  height: 100vh;
   text-align: center;
+  vertical-align: middle;
+  padding-top: 300px;
   row-gap: 2rem; /* Adds spacing between rows */
 }
 
 /* Title Styling */
 .title h1 {
-  font-size: 4rem;
+  font-size: 6rem;
   margin-bottom: 2rem;
 }
 
@@ -31,9 +36,10 @@ h2 {
   margin-bottom: 1rem;
 }
 
-/* Centered Buttons Container */
+/* Container for buttons on intro page */
 .buttons-container {
   display: flex;
+  vertical-align: middle;
   gap: 20px;
   justify-content: center; /* Center the buttons horizontally */
 }
@@ -59,7 +65,15 @@ h2 {
   background-color: #222;
   color: white;
   padding: 20px;
-  overflow-y: auto;
+  /* height: 100vw; */
+  height: 850px;
+  scrollbar-width: none; /* Firefox: Hide scrollbar */
+  -ms-overflow-style: none; /* IE and Edge: Hide scrollbar */
+}
+
+/* WebKit Browsers (Chrome, Safari, Edge) */
+.button-column::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
 }
 
 /* Collapsible Section */
@@ -120,12 +134,12 @@ h2 {
   background-color: #555; /* Change background on hover */
 }
 
-
 /* Footer Styling */
 .footer {
   width: 100vw; /* Forces footer to span full viewport width */
   padding: 10px;
-  background-color: #222;
+  position: fixed; bottom: 0;
+  background-color: #171717;
   text-align: center;
   grid-row: 3; /* Positions footer in the last row */
 }

@@ -10,35 +10,10 @@
         /* Page Layout */
         .container {
             display: grid;
-            grid-template-columns: 1fr 3fr; /* Left: 1 part, Right: 3 parts */
+            grid-template-columns: 0.5fr 3fr; /* Left: 1 part, Right: 3 parts */
             height: 100vh;
         }
-
-        /* Left Column - Buttons */
-        .button-column {
-            background-color: #222;
-            color: white;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .button-column button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: left;
-        }
-
-        .button-column button:hover {
-            background-color: #555;
-        }
-
+        
         /* Right Column - Chart */
         .chart-container {
             padding: 20px;
@@ -57,50 +32,75 @@
         <!-- Left Column: Collapsible Buttons -->
         <div class="button-column">
             <h2>Filter by...</h2>
-            <h3 onclick="toggleAreaButtons()">Areas</h3>
-            <div id="area-buttons" class="collapsible">
-                <button onclick="loadChart('Northeast')">Northeast</button>
-                <button onclick="loadChart('Harbor')">Harbor</button>
-                <button onclick="loadChart('Olympic')">Olympic</button>
-                <button onclick="loadChart('Devonshire')">Devonshire</button>
-                <button onclick="loadChart('Hollywood')">Hollywood</button>
-                <button onclick="loadChart('Van Nuys')">Van Nuys</button>
-                <button onclick="loadChart('77th Street')">77th Street</button>
-                <button onclick="loadChart('Pacific')">Pacific</button>
-                <button onclick="loadChart('Foothill')">Foothill</button>
-                <button onclick="loadChart('Hollenbeck')">Hollenbeck</button>
+            <h3 onclick="toggleCrimeButtons()">Crimes</h3>
+            <div id="crime-buttons" class="collapsible">
                 <button onclick="loadChart('Central')">Central</button>
-                <button onclick="loadChart('West LA')">West LA</button>
-                <button onclick="loadChart('Rampart')">Rampart</button>
+                <button onclick="loadChart('Devonshire')">Devonshire</button>
+                <button onclick="loadChart('Foothill')">Foothill</button>
+                <button onclick="loadChart('Harbor')">Harbor</button>
+                <button onclick="loadChart('Hollenbeck')">Hollenbeck</button>
+                <button onclick="loadChart('Hollywood')">Hollywood</button>
                 <button onclick="loadChart('Mission')">Mission</button>
+                <button onclick="loadChart('Newton')">Newton</button>
+                <button onclick="loadChart('N Hollywood')">N Hollywood</button>
+                <button onclick="loadChart('Northeast')">Northeast</button>
+                <button onclick="loadChart('Olympic')">Olympic</button>
+                <button onclick="loadChart('Pacific')">Pacific</button>
+                <button onclick="loadChart('Rampart')">Rampart</button>
+                <button onclick="loadChart('Southeast')">Southeast</button>
                 <button onclick="loadChart('Southwest')">Southwest</button>
+                <button onclick="loadChart('Topanga')">Topanga</button>
+                <button onclick="loadChart('Van Nuys')">Van Nuys</button>
+                <button onclick="loadChart('West LA')">West LA</button>
                 <button onclick="loadChart('West Valley')">West Valley</button>
                 <button onclick="loadChart('Wilshire')">Wilshire</button>
-                <button onclick="loadChart('N Hollywood')">N Hollywood</button>
-                <button onclick="loadChart('Newton')">Newton</button>
-                <button onclick="loadChart('Southeast')">Southeast</button>
-                <button onclick="loadChart('Topanga')">Topanga</button>
+                <button onclick="loadChart('77th Street')">77th Street</button>
             </div>
-        </div>
+            <h3 onclick="toggleAreaButtons()">Areas</h3>
+            <div id="area-buttons" class="collapsible">
+                <button onclick="loadChart('Central')">Central</button>
+                <button onclick="loadChart('Devonshire')">Devonshire</button>
+                <button onclick="loadChart('Foothill')">Foothill</button>
+                <button onclick="loadChart('Harbor')">Harbor</button>
+                <button onclick="loadChart('Hollenbeck')">Hollenbeck</button>
+                <button onclick="loadChart('Hollywood')">Hollywood</button>
+                <button onclick="loadChart('Mission')">Mission</button>
+                <button onclick="loadChart('Newton')">Newton</button>
+                <button onclick="loadChart('N Hollywood')">N Hollywood</button>
+                <button onclick="loadChart('Northeast')">Northeast</button>
+                <button onclick="loadChart('Olympic')">Olympic</button>
+                <button onclick="loadChart('Pacific')">Pacific</button>
+                <button onclick="loadChart('Rampart')">Rampart</button>
+                <button onclick="loadChart('Southeast')">Southeast</button>
+                <button onclick="loadChart('Southwest')">Southwest</button>
+                <button onclick="loadChart('Topanga')">Topanga</button>
+                <button onclick="loadChart('Van Nuys')">Van Nuys</button>
+                <button onclick="loadChart('West LA')">West LA</button>
+                <button onclick="loadChart('West Valley')">West Valley</button>
+                <button onclick="loadChart('Wilshire')">Wilshire</button>
+                <button onclick="loadChart('77th Street')">77th Street</button>
+            </div>
+        </div> 
     
         <!-- Right Column: Chart -->
         <div class="chart-container">
             <h1>Data Visualizer</h1>
             <div id="crime-trend-chart"></div>
         </div>
+        
+        <!-- Footer placeholder -->
+        <div id="footer-placeholder"></div>
     </div>
-    
 
     <script>
         // Function to Load Chart Data for Selected Area
         function loadChart(area) {
-            fetch(`fetch_data.php?area=${encodeURIComponent(area)}`)
+            fetch(`../fetch_data.php?area=${encodeURIComponent(area)}`)
                 .then(response => response.json())
                 .then(data => {
                     // Extract months and counts from the data
                     const months = data.map(item => item.month);
                     const counts = data.map(item => item.count);
-
                     // ZingChart configuration
                     const chartConfig = {
                         type: 'line',
@@ -118,7 +118,8 @@
                                 fontColor: '#FFFFFF' // White font for the X-axis label
                             },
                             item: {
-                                fontColor: '#FFFFFF' // White font for X-axis tick labels
+                                fontColor: '#FFFFFF', // White font for X-axis tick labels
+                                fontSize: 9
                             },
                             labels: months
                         },
@@ -159,9 +160,7 @@
                             margin: 'dynamic'
                         }
                     };
-
-
-
+                    console.log("Chart data to render:", chartConfig);
                     // Render the chart
                     zingchart.render({
                         id: 'crime-trend-chart',
@@ -169,20 +168,37 @@
                         height: '100%',
                         width: '100%'
                     });
+                    console.log("Chart rendered successfully.");
                 })
                 .catch(error => console.error('Error loading chart data:', error));
         }
-
         // Load default area (Central) on page load
         window.onload = () => loadChart('Central');
     </script>
+    
     <script>
-        function toggleAreaButtons() {
+        function toggleAreaButtons() {  
         const areaButtons = document.getElementById('area-buttons');
         areaButtons.classList.toggle('expanded');
     }
     </script>
-    
+
+    <script>
+        function toggleCrimeButtons() {
+        const areaButtons = document.getElementById('crime-buttons');
+        areaButtons.classList.toggle('expanded');
+    }
+    </script>
+
+    <script>
+        // JavaScript to load footer content
+        fetch('../footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    </script>
 
 </body>
 </html>

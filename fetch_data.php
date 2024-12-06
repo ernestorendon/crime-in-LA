@@ -1,9 +1,7 @@
 #!/usr/local/bin/php
-
-
 <?php
 
-include '../config.php';
+include 'config.php';
 
 // Get the area from the query parameter
 $area = $_GET['area'] ?? 'Central';
