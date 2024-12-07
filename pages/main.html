@@ -34,51 +34,55 @@
             <h2>Filter by...</h2>
             <h3 onclick="toggleCrimeButtons()">Crimes</h3>
             <div id="crime-buttons" class="collapsible">
-                <button onclick="loadChart('Central')">Central</button>
-                <button onclick="loadChart('Devonshire')">Devonshire</button>
-                <button onclick="loadChart('Foothill')">Foothill</button>
-                <button onclick="loadChart('Harbor')">Harbor</button>
-                <button onclick="loadChart('Hollenbeck')">Hollenbeck</button>
-                <button onclick="loadChart('Hollywood')">Hollywood</button>
-                <button onclick="loadChart('Mission')">Mission</button>
-                <button onclick="loadChart('Newton')">Newton</button>
-                <button onclick="loadChart('N Hollywood')">N Hollywood</button>
-                <button onclick="loadChart('Northeast')">Northeast</button>
-                <button onclick="loadChart('Olympic')">Olympic</button>
-                <button onclick="loadChart('Pacific')">Pacific</button>
-                <button onclick="loadChart('Rampart')">Rampart</button>
-                <button onclick="loadChart('Southeast')">Southeast</button>
-                <button onclick="loadChart('Southwest')">Southwest</button>
-                <button onclick="loadChart('Topanga')">Topanga</button>
-                <button onclick="loadChart('Van Nuys')">Van Nuys</button>
-                <button onclick="loadChart('West LA')">West LA</button>
-                <button onclick="loadChart('West Valley')">West Valley</button>
-                <button onclick="loadChart('Wilshire')">Wilshire</button>
-                <button onclick="loadChart('77th Street')">77th Street</button>
+                <button onclick="loadCrimeChart('ASSAULT WITH DEADLY WEAPON, AGGRAVATED ASSAULT')">Assault With Deadly Weapon, Aggravated Assault</button>
+                <button onclick="loadCrimeChart('BATTERY - SIMPLE ASSAULT')">Battery - Simple Assault</button>
+                <button onclick="loadCrimeChart('BIKE - STOLEN')">Bike - Stolen</button>
+                <button onclick="loadCrimeChart('BRANDISH WEAPON')">Brandish Weapon</button>
+                <button onclick="loadCrimeChart('BUNCO, GRAND THEFT')">Bunco, Grand Theft</button>
+                <button onclick="loadCrimeChart('BURGLARY')">Burglary</button>
+                <button onclick="loadCrimeChart('BURGLARY FROM VEHICLE')">Burglary From Vehicle</button>
+                <button onclick="loadCrimeChart('CRIMINAL THREATS - NO WEAPON DISPLAYED')">Criminal Threats - No Weapon Displayed</button>
+                <button onclick="loadCrimeChart('INTIMATE PARTNER - AGGRAVATED ASSAULT')">Intimate Partner - Aggravated Assault</button>
+                <button onclick="loadCrimeChart('INTIMATE PARTNER - SIMPLE ASSAULT')">Intimate Partner - Simple Assault</button>
+                <button onclick="loadCrimeChart('LETTERS, LEWD  -  TELEPHONE CALLS, LEWD')">Letters, Lewd  -  Telephone Calls, Lewd</button>
+                <button onclick="loadCrimeChart('OTHER MISCELLANEOUS CRIME')">Other Miscellaneous Crime</button>
+                <button onclick="loadCrimeChart('ROBBERY')">Robbery</button>
+                <button onclick="loadCrimeChart('SHOPLIFTING - PETTY THEFT ($950 & UNDER)')">Shoplifting - Petty Theft ($950 & Under)</button>
+                <button onclick="loadCrimeChart('SHOPLIFTING-GRAND THEFT ($950.01 & OVER)')">Shoplifting-Grand Theft ($950.01 & Over)</button>
+                <button onclick="loadCrimeChart('THEFT FROM MOTOR VEHICLE - GRAND ($950.01 AND OVER)')">Theft From Motor Vehicle - Grand ($950.01 And Over)</button>
+                <button onclick="loadCrimeChart('THEFT FROM MOTOR VEHICLE - PETTY ($950 & UNDER)')">Theft From Motor Vehicle - Petty ($950 & Under)</button>
+                <button onclick="loadCrimeChart('THEFT OF IDENTITY')">Theft Of Identity</button>
+                <button onclick="loadCrimeChart('THEFT PLAIN - PETTY ($950 & UNDER)')">Theft Plain - Petty ($950 & Under)</button>
+                <button onclick="loadCrimeChart('THEFT-GRAND ($950.01 & OVER)EXCPT,GUNS,FOWL,LIVESTK,PROD')">Theft-Grand ($950.01 & Over)Excpt,Guns,Fowl,Livestk,Prod</button>
+                <button onclick="loadCrimeChart('TRESPASSING')">Trespassing</button>
+                <button onclick="loadCrimeChart('VANDALISM - FELONY ($400 & OVER, ALL CHURCH VANDALISMS)')">Vandalism - Felony ($400 & Over, All Church Vandalisms)</button>
+                <button onclick="loadCrimeChart('VANDALISM - MISDEAMEANOR ($399 OR UNDER)')">Vandalism - Misdeameanor ($399 Or Under)</button>
+                <button onclick="loadCrimeChart('VEHICLE - STOLEN')">Vehicle - Stolen</button>
+                <button onclick="loadCrimeChart('VIOLATION OF RESTRAINING ORDER')">Violation Of Restraining Order</button>
             </div>
             <h3 onclick="toggleAreaButtons()">Areas</h3>
             <div id="area-buttons" class="collapsible">
-                <button onclick="loadChart('Central')">Central</button>
-                <button onclick="loadChart('Devonshire')">Devonshire</button>
-                <button onclick="loadChart('Foothill')">Foothill</button>
-                <button onclick="loadChart('Harbor')">Harbor</button>
-                <button onclick="loadChart('Hollenbeck')">Hollenbeck</button>
-                <button onclick="loadChart('Hollywood')">Hollywood</button>
-                <button onclick="loadChart('Mission')">Mission</button>
-                <button onclick="loadChart('Newton')">Newton</button>
-                <button onclick="loadChart('N Hollywood')">N Hollywood</button>
-                <button onclick="loadChart('Northeast')">Northeast</button>
-                <button onclick="loadChart('Olympic')">Olympic</button>
-                <button onclick="loadChart('Pacific')">Pacific</button>
-                <button onclick="loadChart('Rampart')">Rampart</button>
-                <button onclick="loadChart('Southeast')">Southeast</button>
-                <button onclick="loadChart('Southwest')">Southwest</button>
-                <button onclick="loadChart('Topanga')">Topanga</button>
-                <button onclick="loadChart('Van Nuys')">Van Nuys</button>
-                <button onclick="loadChart('West LA')">West LA</button>
-                <button onclick="loadChart('West Valley')">West Valley</button>
-                <button onclick="loadChart('Wilshire')">Wilshire</button>
-                <button onclick="loadChart('77th Street')">77th Street</button>
+                <button onclick="loadAreaChart('Central')">Central</button>
+                <button onclick="loadAreaChart('Devonshire')">Devonshire</button>
+                <button onclick="loadAreaChart('Foothill')">Foothill</button>
+                <button onclick="loadAreaChart('Harbor')">Harbor</button>
+                <button onclick="loadAreaChart('Hollenbeck')">Hollenbeck</button>
+                <button onclick="loadAreaChart('Hollywood')">Hollywood</button>
+                <button onclick="loadAreaChart('Mission')">Mission</button>
+                <button onclick="loadAreaChart('Newton')">Newton</button>
+                <button onclick="loadAreaChart('N Hollywood')">N Hollywood</button>
+                <button onclick="loadAreaChart('Northeast')">Northeast</button>
+                <button onclick="loadAreaChart('Olympic')">Olympic</button>
+                <button onclick="loadAreaChart('Pacific')">Pacific</button>
+                <button onclick="loadAreaChart('Rampart')">Rampart</button>
+                <button onclick="loadAreaChart('Southeast')">Southeast</button>
+                <button onclick="loadAreaChart('Southwest')">Southwest</button>
+                <button onclick="loadAreaChart('Topanga')">Topanga</button>
+                <button onclick="loadAreaChart('Van Nuys')">Van Nuys</button>
+                <button onclick="loadAreaChart('West LA')">West LA</button>
+                <button onclick="loadAreaChart('West Valley')">West Valley</button>
+                <button onclick="loadAreaChart('Wilshire')">Wilshire</button>
+                <button onclick="loadAreaChart('77th Street')">77th Street</button>
             </div>
         </div> 
     
@@ -92,10 +96,97 @@
         <div id="footer-placeholder"></div>
     </div>
 
+
+    <!-- Function to Load Chart Data for Selected Crime Category -->
     <script>
-        // Function to Load Chart Data for Selected Area
-        function loadChart(area) {
-            fetch(`../fetch_data.php?area=${encodeURIComponent(area)}`)
+        function loadCrimeChart(crimeCategory) {
+            fetch(`../fetch_crime_data.php?crimeCategory=${encodeURIComponent(crimeCategory)}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Extract months and counts from the data
+                    const months = data.map(item => item.month);
+                    const counts = data.map(item => item.count);
+    
+                    // ZingChart configuration for crime category chart
+                    const chartConfig = {
+                        type: 'line',
+                        backgroundColor: 'transparent',
+                        title: {
+                            text: `Frequency of ${crimeCategory} Over Time`,
+                            fontColor: '#FFFFFF',
+                            fontSize: 18,
+                            adjustLayout: true,
+                            y: 20
+                        },
+                        scaleX: {
+                            label: {
+                                text: 'Month',
+                                fontColor: '#FFFFFF'
+                            },
+                            item: {
+                                fontColor: '#FFFFFF',
+                                fontSize: 9
+                            },
+                            labels: months
+                        },
+                        scaleY: {
+                            label: {
+                                text: 'Number of Crimes',
+                                fontColor: '#FFFFFF'
+                            },
+                            item: {
+                                fontColor: '#FFFFFF'
+                            }
+                        },
+                        tooltip: {
+                            text: '%t: %v',
+                            fontColor: '#FFFFFF',
+                            backgroundColor: '#333333',
+                            borderRadius: 5
+                        },
+                        series: [
+                            {
+                                values: counts,
+                                text: 'Crimes',
+                                backgroundColor: '#FFFFFF'
+                            }
+                        ],
+                        plot: {
+                            marker: {
+                                backgroundColor: '#FFFFFF',
+                                borderWidth: 1,
+                                borderColor: '#FFFFFF'
+                            },
+                            tooltip: {
+                                fontColor: '#FFFFFF'
+                            }
+                        },
+                        plotarea: {
+                            marginTop: 50,
+                            margin: 'dynamic'
+                        }
+                    };
+    
+                    console.log("Crime chart data to render:", chartConfig);
+                    // Render the chart
+                    zingchart.render({
+                        id: 'crime-trend-chart',
+                        data: chartConfig,
+                        height: '100%',
+                        width: '100%'
+                    });
+                    console.log("Crime chart rendered successfully.");
+                })
+                .catch(error => console.error('Error loading crime chart data:', error));
+        }
+    </script>
+    
+
+
+    <!-- Function to Load Chart Data for Selected Area -->
+    <script>
+        function loadAreaChart(area) {
+            fetch(`../fetch_area_data.php?area=${encodeURIComponent(area)}`)
                 .then(response => response.json())
                 .then(data => {
                     // Extract months and counts from the data
@@ -106,7 +197,7 @@
                         type: 'line',
                         backgroundColor: 'transparent',
                         title: {
-                            text: `Crime Trends in ${area}`,
+                            text: `Crime Trends in ${area} Region Over Time`,
                             fontColor: '#FFFFFF', // White font for the title
                             fontSize: 18,
                             adjustLayout: true,
@@ -173,9 +264,11 @@
                 .catch(error => console.error('Error loading chart data:', error));
         }
         // Load default area (Central) on page load
-        window.onload = () => loadChart('Central');
+        window.onload = () => loadAreaChart('Central');
     </script>
     
+
+    <!-- Collapsible buttons that contain areas of LA -->
     <script>
         function toggleAreaButtons() {  
         const areaButtons = document.getElementById('area-buttons');
@@ -183,6 +276,7 @@
     }
     </script>
 
+    <!-- Collapsible buttons that contain specific crimes -->
     <script>
         function toggleCrimeButtons() {
         const areaButtons = document.getElementById('crime-buttons');
@@ -190,8 +284,8 @@
     }
     </script>
 
+    <!-- JavaScript to load footer content -->
     <script>
-        // JavaScript to load footer content
         fetch('../footer.html')
             .then(response => response.text())
             .then(data => {

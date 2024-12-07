@@ -67,6 +67,7 @@ h2 {
   padding: 20px;
   /* height: 100vw; */
   height: 850px;
+  overflow-y: scroll;
   scrollbar-width: none; /* Firefox: Hide scrollbar */
   -ms-overflow-style: none; /* IE and Edge: Hide scrollbar */
 }
