@@ -84,6 +84,11 @@
                 <button onclick="loadAreaChart('Wilshire')">Wilshire</button>
                 <button onclick="loadAreaChart('77th Street')">77th Street</button>
             </div>
+            <h3 onclick="toggleComplexQueries()">Complex Queries</h3>
+            <div id = "complex-buttons" class="collapsible">
+                <button onclick="loadComplexQueries()">All Crime Over Time</button>
+            </div>
+
         </div> 
     
         <!-- Right Column: Chart -->
@@ -267,6 +272,88 @@
         window.onload = () => loadAreaChart('Central');
     </script>
     
+    <script>
+        function loadComplexQueries() {
+            fetch('../fetch_complex_data.php')
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Complex trend data received:", data);
+    
+                    // Process data into ZingChart format
+                    const months = [...new Set(data.map(item => item.month))]; // Unique months
+                    const areas = [...new Set(data.map(item => item.area))];  // Unique areas
+    
+                    // Create series for each area
+                    const series = areas.map(area => {
+                        const areaData = data
+                            .filter(item => item.area === area)
+                            .map(item => ({
+                                x: item.month,
+                                y: item.totalCrimes
+                            }));
+                        return {
+                            values: areaData.map(point => point.y),
+                            text: area
+                        };
+                    });
+    
+                    // ZingChart configuration
+                    const chartConfig = {
+                        type: 'line',
+                        backgroundColor: 'transparent',
+                        title: {
+                            text: 'All Crime Over Time',
+                            fontColor: '#FFFFFF',
+                            fontSize: 18,
+                            adjustLayout: true
+                        },
+                        scaleX: {
+                            label: {
+                                text: 'Month',
+                                fontColor: '#FFFFFF'
+                            },
+                            item: {
+                                fontColor: '#FFFFFF',
+                                fontSize: 9
+                            },
+                            labels: months
+                        },
+                        scaleY: {
+                            label: {
+                                text: 'Number of Crimes',
+                                fontColor: '#FFFFFF'
+                            },
+                            item: {
+                                fontColor: '#FFFFFF'
+                            }
+                        },
+                        series: series,
+                        legend: {
+                            visible: true,
+                            backgroundColor: 'transparent',
+                            borderWidth: 0,
+                            item: {
+                                fontColor: '#FFFFFF'
+                            }
+                        },
+                        plotarea: {
+                            marginTop: 50,
+                            margin: 'dynamic'
+                        }
+                    };
+    
+                    // Render chart
+                    zingchart.render({
+                        id: 'crime-trend-chart',
+                        data: chartConfig,
+                        height: '100%',
+                        width: '100%'
+                    });
+                })
+                .catch(error => console.error("Error fetching complex trend data:", error));
+        }
+    </script>
+    
 
     <!-- Collapsible buttons that contain areas of LA -->
     <script>
@@ -280,6 +367,14 @@
     <script>
         function toggleCrimeButtons() {
         const areaButtons = document.getElementById('crime-buttons');
+        areaButtons.classList.toggle('expanded');
+    }
+    </script>
+
+    <!-- Collapsible buttons that contain complex queries -->
+    <script>
+        function toggleComplexQueries() {
+        const areaButtons = document.getElementById('complex-buttons');
         areaButtons.classList.toggle('expanded');
     }
     </script>
