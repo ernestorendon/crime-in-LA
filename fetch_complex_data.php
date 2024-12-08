@@ -17,12 +17,16 @@ if (!$connection) {
     exit;
 }
 
-// Complex trend query
+// Complex trend query with percentage calculation
 $query = "
     SELECT 
         TO_CHAR(c.DateOccurred, 'YYYY-MM') AS Month, 
         l.AreaName, 
-        COUNT(c.RecordNumber) AS TotalCrimes
+        COUNT(c.RecordNumber) AS TotalCrimes,
+        ROUND(
+            100.0 * COUNT(c.RecordNumber) / SUM(COUNT(c.RecordNumber)) OVER (PARTITION BY TO_CHAR(c.DateOccurred, 'YYYY-MM')), 
+            2
+        ) AS CrimePercentage
     FROM Crime c
     JOIN Location l 
         ON c.LocationID = l.LocationID
@@ -43,7 +47,8 @@ while ($row = oci_fetch_assoc($statement)) {
     $data[] = [
         'month' => $row['MONTH'],
         'area' => $row['AREANAME'],
-        'totalCrimes' => (int)$row['TOTALCRIMES']
+        'totalCrimes' => (int)$row['TOTALCRIMES'],
+        'crimePercentage' => (float)$row['CRIMEPERCENTAGE']
     ];
 }
 
